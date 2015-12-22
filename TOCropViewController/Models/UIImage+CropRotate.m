@@ -24,17 +24,12 @@
 
 @implementation UIImage (CropRotate)
 
-- (BOOL)hasAlpha
-{
-    CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(self.CGImage);
-    return (alphaInfo == kCGImageAlphaFirst || alphaInfo == kCGImageAlphaLast ||
-            alphaInfo == kCGImageAlphaPremultipliedFirst || alphaInfo == kCGImageAlphaPremultipliedLast);
-}
-
 - (UIImage *)croppedImageWithFrame:(CGRect)frame angle:(NSInteger)angle
 {
     UIImage *croppedImage = nil;
-    UIGraphicsBeginImageContextWithOptions(frame.size, ![self hasAlpha], self.scale);
+    CGPoint drawPoint = CGPointZero;
+    
+    UIGraphicsBeginImageContextWithOptions(frame.size, YES, self.scale);
     {
         CGContextRef context = UIGraphicsGetCurrentContext();
         
@@ -54,7 +49,7 @@
         }
         else {
             CGContextTranslateCTM(context, -frame.origin.x, -frame.origin.y);
-            [self drawAtPoint:CGPointZero];
+            [self drawAtPoint:drawPoint];
         }
         
         croppedImage = UIGraphicsGetImageFromCurrentImageContext();

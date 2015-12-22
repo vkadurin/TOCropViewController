@@ -22,22 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TOCropView.h"
-#import "TOCropToolbar.h"
-
-typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
-    TOCropViewControllerAspectRatioOriginal,
-    TOCropViewControllerAspectRatioSquare,
-    TOCropViewControllerAspectRatio3x2,
-    TOCropViewControllerAspectRatio5x3,
-    TOCropViewControllerAspectRatio4x3,
-    TOCropViewControllerAspectRatio5x4,
-    TOCropViewControllerAspectRatio7x5,
-    TOCropViewControllerAspectRatio16x9
-};
-
 @class TOCropViewController;
-
 
 ///------------------------------------------------
 /// @name Delegate
@@ -79,16 +64,6 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
 @property (nonatomic, readonly) UIImage *image;
 
 /**
- The crop view managed by this view controller.
- */
-@property (nonatomic, strong, readonly) TOCropView *cropView;
-
-/**
- The toolbar view managed by this view controller.
- */
-@property (nonatomic, strong, readonly) TOCropToolbar *toolbar;
-
-/**
  The view controller's delegate that will return the resulting cropped image, as well as crop information
  */
 @property (nonatomic, weak) id<TOCropViewControllerDelegate> delegate;
@@ -99,22 +74,12 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerAspectRatio) {
 @property (nonatomic, assign) BOOL showActivitySheetOnDone;
 
 /**
- The default aspect ratio for the crop view, the default value is TOCropViewControllerAspectRatioOriginal.
- */
-@property (nonatomic, assign) TOCropViewControllerAspectRatio defaultAspectRatio;
-
-/**
- If true, the aspect ratio will be locked to the defaultAspectRatio. And, the aspect ratio button won't appear on the toolbar.
- */
-@property (nonatomic, assign) BOOL lockedAspectRatio;
-
-/**
  If performing a transition animation, this block can be used to set up any view states just before the animation begins
  */
 @property (nonatomic, copy) void (^prepareForTransitionHandler)(void);
 
-/** 
- If `showActivitySheetOnDone` is true, then these activity items will be supplied to that UIActivityViewController 
+/**
+ If `showActivitySheetOnDone` is true, then these activity items will be supplied to that UIActivityViewController
  in addition to the `TOActivityCroppedImageProvider` object.
  */
 @property (nonatomic, strong) NSArray *activityItems;

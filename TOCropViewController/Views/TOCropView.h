@@ -21,7 +21,6 @@
 //  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "TOCropOverlayView.h"
 
 @class TOCropView;
 
@@ -40,17 +39,6 @@
 @property (nonatomic, strong, readonly) UIImage *image;
 
 /**
- A grid view overlaid on top of the foreground image view's container.
- */
-@property (nonatomic, strong, readonly) TOCropOverlayView *gridOverlayView;
-
-/**
- If false, the user cannot resize the crop box frame using a pan gesture from a corner.
- Default vaue is true.
- */
-@property (nonatomic, assign) BOOL cropBoxResizeEnabled;
-
-/**
  A delegate object that receives notifications from the crop view
  */
 @property (nonatomic, weak) id<TOCropViewDelegate> delegate;
@@ -60,7 +48,7 @@
  */
 @property (nonatomic, readonly) BOOL canReset;
 
-/** 
+/**
  The frame of the cropping box on the crop view
  */
 @property (nonatomic, readonly) CGRect cropBoxFrame;
@@ -96,7 +84,7 @@
 @property (nonatomic, assign, readonly) NSInteger angle;
 
 /**
- Hide all of the crop elements for transition animations 
+ Hide all of the crop elements for transition animations
  */
 @property (nonatomic, assign) BOOL croppingViewsHidden;
 
@@ -125,7 +113,7 @@
 - (void)setSimpleMode:(BOOL)simpleMode animated:(BOOL)animated;
 
 /**
- When performing a screen rotation that will change the size of the scroll view, this takes 
+ When performing a screen rotation that will change the size of the scroll view, this takes
  a snapshot of all of the scroll view data before it gets manipulated by iOS.
  Please call this in your view controller, before the rotation animation block is committed.
  */
